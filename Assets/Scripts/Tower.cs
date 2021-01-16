@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
 
     private void Start()
     {
+        transform.tag = "Tower";
         transform.Find("Range").GetComponent<SpriteRenderer>().sprite = null;
     }
 

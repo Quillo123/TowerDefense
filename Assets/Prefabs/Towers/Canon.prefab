@@ -209,9 +209,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f641b12c8b955db40ad9d11037419381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 6415649019667600586, guid: 9f429426ba47c454c8a145c134ee37e1,
+  _projectile: {fileID: 5631342679765164409, guid: 9f429426ba47c454c8a145c134ee37e1,
     type: 3}
   _projectileSpeed: 10
+  _projectileDamage: 4
+  _projectileHealth: 2
   _range: 8
   _fireWaitTime: 0.5
 --- !u!60 &7123540782867930406

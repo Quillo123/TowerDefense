@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] int _health = 1;
     [SerializeField] int _damage = 1;
+    [SerializeField] float _moveSpeed = 2f;
     [SerializeField] int _moneyAddedOnDeath = 1;
 
     MoneyDisplay _moneyDisplay;
@@ -28,10 +29,12 @@ public class Enemy : MonoBehaviour
         {
             var projectile = collision.GetComponent<Projectile>();
             int healthRemaining = _health;
-            _health -= projectile.projectileHealth;
-            projectile.projectileHealth -= healthRemaining;
+            _health -= projectile._projectileDamage;
+            projectile._projectileHealth--;
         }   
     }
+
+    public float GetMoveSpeed() { return _moveSpeed; }
 
     private void DestroyEnemy()
     {

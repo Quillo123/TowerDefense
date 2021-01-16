@@ -15,11 +15,6 @@ public class EnemyPathing : MonoBehaviour
     void Start()
     {
         gameObject.tag = "Enemy";
-        _waypoints = _waveConfig.GetWaypoints();
-        _currentFlag = _waypoints[_waypointIndex];
-
-        
-        
 
         var targetPos = _waypoints[_waypointIndex].transform.position;
         LookTowardTarget(targetPos);
@@ -28,13 +23,13 @@ public class EnemyPathing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveTowardWaypoint();
-
+            MoveTowardWaypoint();
     }
 
-    public void SetWaveConfig(WaveConfig waveConfig)
+    public void SetWaveConfigAndPath(WaveConfig waveConfig, Path path)
     {
         _waveConfig = waveConfig;
+        _waypoints = path.GetWaypoints();
     }
 
     private void MoveTowardWaypoint()
@@ -42,7 +37,7 @@ public class EnemyPathing : MonoBehaviour
         if (_waypointIndex <= _waypoints.Count - 1)
         {
             var targetPos = _waypoints[_waypointIndex].transform.position;
-            var movementThisFrame = _waveConfig.GetMoveSpeed() * Time.deltaTime;
+            var movementThisFrame = GetComponent<Enemy>().GetMoveSpeed() * Time.deltaTime;
             
             transform.position = Vector2.MoveTowards(transform.position, targetPos, movementThisFrame);
             

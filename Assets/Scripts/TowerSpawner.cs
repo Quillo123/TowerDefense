@@ -16,8 +16,15 @@ public class TowerSpawner : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(_moneyDisplay.SpendMoney(_tower.GetTowerCost()))
-            SpawnTower(GetPosClicked());
+        if (_tower != null)
+        {
+            if (_moneyDisplay.SpendMoney(_tower.GetTowerCost()))
+                SpawnTower(GetPosClicked());
+            else
+                Debug.Log("Not enough money");
+        } 
+        else
+            Debug.Log("Tower not selected");
     }
 
     public void SetSelectedTower(Tower towerToSelect)
@@ -33,7 +40,7 @@ public class TowerSpawner : MonoBehaviour
     }
 
     private void SpawnTower(Vector2 spawnPos)
-    { 
+    {
         Tower newTower = Instantiate(_tower, spawnPos, Quaternion.identity) as Tower;
     }
 }

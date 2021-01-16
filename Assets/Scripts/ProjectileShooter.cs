@@ -7,8 +7,11 @@ public class ProjectileShooter : MonoBehaviour
 
     #region Properties
 
-    [SerializeField] Rigidbody2D _projectile;
+    [SerializeField] Projectile _projectile;
+
     [SerializeField] public float _projectileSpeed = 8;
+    [SerializeField] public int _projectileDamage = 1;
+    [SerializeField] public int _projectileHealth = 1;
 
     [SerializeField] float _range = 10f;
 
@@ -28,8 +31,10 @@ public class ProjectileShooter : MonoBehaviour
     void Start()
     {
         _firePos = transform.Find("FirePosition");
-
         _timer = _fireWaitTime;
+
+        _projectile._projectileDamage = _projectileDamage;
+        _projectile._projectileHealth = _projectileHealth;
     }
 
     // Update is called once per frame
@@ -84,8 +89,8 @@ public class ProjectileShooter : MonoBehaviour
     private void FireProjectile()
     {
         Vector3 firePosition = new Vector3(_firePos.position.x, _firePos.position.y, _firePos.position.z);
-        var canonBallInst = Instantiate(_projectile, firePosition, transform.rotation);
-        canonBallInst.velocity = _firePos.up * _projectileSpeed;
+        var projectileInst = Instantiate(_projectile, firePosition, transform.rotation) as Projectile;
+        projectileInst.GetComponent<Rigidbody2D>().velocity = _firePos.up * _projectileSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

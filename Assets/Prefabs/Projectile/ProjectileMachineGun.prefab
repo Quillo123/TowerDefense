@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6291168248981899805}
   - component: {fileID: 2198104557497669604}
   - component: {fileID: 697854448972079703}
-  - component: {fileID: 4043999285707035921}
+  - component: {fileID: 1263311974155247890}
   m_Layer: 0
   m_Name: ProjectileMachineGun
   m_TagString: Untagged
@@ -117,8 +117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572dda68bc7318c49bca264561e40af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &4043999285707035921
-CircleCollider2D:
+  projectileHealth: 1
+--- !u!60 &1263311974155247890
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,9 +128,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0012, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.16113387
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.125, y: 0.125}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.011016846, y: 0.060883045}
+      - {x: -0.012433052, y: 0.062097788}
+      - {x: -0.032323837, y: 0.040736437}
+      - {x: -0.03755474, y: -0.062203407}
+      - {x: 0.035494804, y: -0.06331277}
+      - {x: 0.034015656, y: -0.022962093}
+      - {x: 0.033597946, y: 0.039508343}

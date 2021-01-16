@@ -5,7 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
-    [SerializeField] public int projectileHealth = 1;
+    [SerializeField] public int _projectileHealth = 1;
+    [SerializeField] public int _projectileDamage = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (projectileHealth <= 0)
+        if (_projectileHealth <= 0)
             Destroy(gameObject);
     }
 

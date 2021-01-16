@@ -136,3 +136,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 10
   _damage: 1
+  _moveSpeed: 3
+  _moneyAddedOnDeath: 1
