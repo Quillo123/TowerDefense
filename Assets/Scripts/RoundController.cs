@@ -20,4 +20,6 @@ public class RoundController : MonoBehaviour
         _enemySpawner.SpawnAllWaves(_roundConfigs[_StartRound].GetRoundWaves());
         _StartRound++;
     }
+
+    public int GetRoundNumber() { return _StartRound; }
 }

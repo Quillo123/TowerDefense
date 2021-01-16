@@ -9,6 +9,8 @@ TagManager:
   - BorderWall
   - Path
   - Tower
+  - Flag
+  - WaveChecker
   layers:
   - Default
   - TransparentFX

@@ -6,10 +6,13 @@ public class GameState : MonoBehaviour
 {
 
     RoundController _roundController;
+    RoundDisplay _roundDisplay;
 
     public enum States { NOT_PLAYING, PLAYING, WON, LOST, START }
 
-    public States state = States.START;
+    States _state = States.START;
+
+    float _roundTimer;
 
     
 
@@ -17,17 +20,32 @@ public class GameState : MonoBehaviour
     void Start()
     {
         _roundController = FindObjectOfType<RoundController>();
+        _roundDisplay = FindObjectOfType<RoundDisplay>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(_state == States.PLAYING)
+            EndRound();
     }
+
+    public States GetCurrentState() { return _state; }
 
     public void StartRound()
     {
-        state = States.PLAYING;
+        _state = States.PLAYING;
         _roundController.StartNextRound();
+    }
+
+    private void EndRound()
+    {
+        _roundTimer += Time.deltaTime;
+        if (_roundTimer >= 5 && FindObjectOfType<WaveOverChecker>() == null)
+        {
+            _state = States.NOT_PLAYING;
+            _roundDisplay.UpdateDisplay();
+            _roundTimer = 0;
+        }
     }
 }

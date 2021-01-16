@@ -7,6 +7,7 @@ using System.Linq;
 public class EnemySpawner : MonoBehaviour
 {
 
+    [SerializeField] WaveOverChecker waveOverChecker;
     [SerializeField] int _startingWave = 0;
     List<Path> _path;
 
@@ -17,12 +18,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnAllWaves(List<WaveConfig> waves)
     {
-        for(int waveIndex = _startingWave; _startingWave < waves.Count; waveIndex++)
+        for(int waveIndex = _startingWave; waveIndex < waves.Count; waveIndex++)
         {
             var currentWave = waves[waveIndex];
             StartCoroutine(SpawnWave(currentWave));
         }
-        
     }
 
     private IEnumerator SpawnWave(WaveConfig waveConfig)
@@ -33,6 +33,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies(WaveConfig waveConfig)
     {
+        var waveChecker = Instantiate(waveOverChecker, Vector3.zero, Quaternion.identity);
         for (int enemyCount = 0; enemyCount < waveConfig.GetNumberOfEnemies(); enemyCount++)
         {
             var newEnemy = Instantiate(
@@ -44,6 +45,7 @@ public class EnemySpawner : MonoBehaviour
             
             yield return new WaitForSeconds(waveConfig.GetTimeBetweenSpawns());
         }
+        Destroy(waveChecker);
     }
 
     // Update is called once per frame
