@@ -8,33 +8,51 @@ public class GameState : MonoBehaviour
     RoundController _roundController;
     RoundDisplay _roundDisplay;
 
-    public enum States { NOT_PLAYING, PLAYING, WON, LOST, START }
+    bool _isRandom = false;
+    int _seed = 0;
 
-    States _state = States.START;
+    public enum State { NotPlaying, Playing, Lost, Start }
+    public enum RoundGeneratorState { RandomNoSeed, RandomSeed, Set}
+
+    State _state = State.Start;
 
     float _roundTimer;
 
-    
 
-    // Start is called before the first frame update
+    public State GetCurrentState() { return _state; }
+    public void SetState(State state) { _state = state; }
+
+    public int GetSeed() { return _seed; }
+
+    public bool IsRandomSeed() { return _isRandom; }
+
     void Start()
     {
         _roundController = FindObjectOfType<RoundController>();
         _roundDisplay = FindObjectOfType<RoundDisplay>();
+
+        MapLoader.LoadMap();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(_state == States.PLAYING)
-            EndRound();
+        switch (_state)
+        {
+            case State.NotPlaying:
+                break;
+            case State.Playing:
+                EndRound();
+                break;
+            case State.Lost:
+                break;
+            case State.Start:
+                break;
+        }
     }
-
-    public States GetCurrentState() { return _state; }
 
     public void StartRound()
     {
-        _state = States.PLAYING;
+        _state = State.Playing;
         _roundController.StartNextRound();
     }
 
@@ -43,7 +61,7 @@ public class GameState : MonoBehaviour
         _roundTimer += Time.deltaTime;
         if (_roundTimer >= 5 && FindObjectOfType<WaveOverChecker>() == null)
         {
-            _state = States.NOT_PLAYING;
+            _state = State.NotPlaying;
             _roundDisplay.UpdateDisplay();
             _roundTimer = 0;
         }
