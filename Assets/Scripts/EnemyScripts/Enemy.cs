@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
     [SerializeField] int _health = 1;
     [SerializeField] int _damage = 1;
     [SerializeField] float _moveSpeed = 2f;
@@ -15,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     public int GetDamage() { return _damage; }
 
-    public int GetDifficulty() { return _difficulty}
+    public int GetDifficulty() { return _difficulty;  }
 
     private void Start()
     {

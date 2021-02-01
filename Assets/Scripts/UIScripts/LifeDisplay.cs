@@ -13,6 +13,7 @@ public class LifeDisplay : MonoBehaviour
 
     private void Start()
     {
+        _gameState = FindObjectOfType<GameState>();
         _lifeText = GetComponent<TextMeshProUGUI>();
         UpdateDisplay();
     }
@@ -35,6 +36,9 @@ public class LifeDisplay : MonoBehaviour
             
 
         _life -= lifeToBeRemoved;
+
+        if (_life <= 0)
+            _gameState.SetState(GameState.State.Lost);
 
         UpdateDisplay();
         return true;

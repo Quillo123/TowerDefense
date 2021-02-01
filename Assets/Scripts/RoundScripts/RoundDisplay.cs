@@ -17,6 +17,6 @@ public class RoundDisplay : MonoBehaviour
 
     public void UpdateDisplay()
     {
-        _roundText.text = "Round: " + (_roundController.GetRoundNumber() + 1).ToString();
+        _roundText.text = "Round: " + (_roundController.GetCurrentRound() + 1).ToString();
     }
 }

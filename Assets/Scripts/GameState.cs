@@ -4,32 +4,45 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-
-    RoundController _roundController;
-    RoundDisplay _roundDisplay;
-
-    bool _isRandom = false;
-    int _seed = 0;
-
+    //Enums
+    public enum Difficulty { Easy, Medium, Hard };
     public enum State { NotPlaying, Playing, Lost, Start }
-    public enum RoundGeneratorState { RandomNoSeed, RandomSeed, Set}
+    public enum RoundGeneratorState { RandomNoSeed, RandomWithSeed, Set}
 
+
+
+    Difficulty _gameDifficulty = Difficulty.Easy;
     State _state = State.Start;
+
+    RoundGeneratorState _generatorState = RoundGeneratorState.RandomWithSeed;
+    int _seed = 0;
 
     float _roundTimer;
 
+    GameObject _gameOverPanel;
+    string _gameOverPanelName = "GameOverPanel";
+    RoundController _roundController;
+    RoundDisplay _roundDisplay;
 
     public State GetCurrentState() { return _state; }
-    public void SetState(State state) { _state = state; }
+
+    public Difficulty GetGameDifficulty() { return _gameDifficulty; }
+
+    public RoundGeneratorState GetGeneratorState() { return _generatorState; }
 
     public int GetSeed() { return _seed; }
 
-    public bool IsRandomSeed() { return _isRandom; }
+    public void SetState(State state) { _state = state; }
+
+
 
     void Start()
     {
         _roundController = FindObjectOfType<RoundController>();
         _roundDisplay = FindObjectOfType<RoundDisplay>();
+        _gameOverPanel = GameObject.Find(_gameOverPanelName);
+
+        _gameOverPanel.gameObject.SetActive(false);
 
         MapLoader.LoadMap();
     }
@@ -44,6 +57,7 @@ public class GameState : MonoBehaviour
                 EndRound();
                 break;
             case State.Lost:
+                _gameOverPanel.gameObject.SetActive(true);
                 break;
             case State.Start:
                 break;
