@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class MapLoader : MonoBehaviour
+public static class MapLoader
 {
     static int _mapNum = 1;
 
@@ -22,7 +22,7 @@ public class MapLoader : MonoBehaviour
         if(_mapNum == -1)
         {
             Debug.LogError("Map never Set!!! Returning to main menu!!");
-            FindObjectOfType<SceneLoader>().LoadMainMenu();
+            GameObject.FindObjectOfType<SceneLoader>().LoadMainMenu();
         }
         else
         {
@@ -34,7 +34,7 @@ public class MapLoader : MonoBehaviour
             }
             else
             {
-                Instantiate(map);
+                GameObject.Instantiate(map);
             }
         }
     }

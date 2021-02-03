@@ -5,7 +5,6 @@ using UnityEngine;
 public class ProjectileShooter : MonoBehaviour
 {
 
-    #region Properties
 
     [SerializeField] Projectile _projectile;
 
@@ -25,7 +24,6 @@ public class ProjectileShooter : MonoBehaviour
     //Cached objects
     Transform _firePos;
 
-    #endregion
 
     // Start is called before the first frame update
     void Start()

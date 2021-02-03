@@ -8,26 +8,17 @@ public class TowerSpawner : MonoBehaviour
     Tower _tower;
     TowerButton _towerButton;
 
-    MoneyDisplay _moneyDisplay;
-    MessageController _messageController;
-
-    private void Start()
-    {
-        _moneyDisplay = FindObjectOfType<MoneyDisplay>();
-        _messageController = FindObjectOfType<MessageController>();
-    }
-
     private void OnMouseDown()
     {
         if (_tower != null)
         {
-            if (_moneyDisplay.SpendMoney(_tower.GetTowerCost()))
+            if (GameStates.GetMoneyDisplay().SpendMoney(_tower.GetTowerCost()))
             {
                 SpawnTower(GetPosClicked());
             }
             else
             {
-                _messageController.PlayMessage("Not Enough Money");
+                GameStates.GetMessageController().PlayMessage("Not Enough Money");
             }
                 
         } 

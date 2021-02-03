@@ -10,13 +10,9 @@ public class EnemyPathing : MonoBehaviour
     List<Transform> _waypoints;
     int _waypointIndex = 0;
 
-    GameState _gameState;
-
     void Start()
     {
         gameObject.tag = "Enemy";
-
-        _gameState = FindObjectOfType<GameState>();
 
         var targetPos = _waypoints[_waypointIndex].transform.position;
         LookTowardTarget(targetPos);
@@ -61,7 +57,7 @@ public class EnemyPathing : MonoBehaviour
     {
         if (!FindObjectOfType<LifeDisplay>().RemoveLife(GetComponent<Enemy>().GetDamage()))
         {
-            _gameState.SetState(GameState.State.Lost);
+            GameStates.SetGameState(GameStates.GameState.Lost);
         }
         Destroy(gameObject);
     }

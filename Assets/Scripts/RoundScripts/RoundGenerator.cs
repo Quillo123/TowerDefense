@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameStates;
 
 public class RoundGenerator : MonoBehaviour
 {
@@ -11,18 +12,12 @@ public class RoundGenerator : MonoBehaviour
 
     System.Random _random;
 
-    GameState _gameState;
-    RoundController _roundController;
-
     private void Start()
     {
-        _gameState = FindObjectOfType<GameState>();
-        _roundController = GetComponent<RoundController>();
-
         LoadEnemyList();
 
-        if (_gameState.GetGeneratorState() == GameState.RoundGeneratorState.RandomWithSeed)
-            _random = new System.Random(_gameState.GetSeed());
+        if (GameStates.GetGeneratorState() == GameStates.RoundGeneratorState.RandomWithSeed)
+            _random = new System.Random(GameStates.GetSeed());
         else
             _random = new System.Random();
     }
@@ -45,8 +40,8 @@ public class RoundGenerator : MonoBehaviour
     {
         RoundConfig nextRound = ScriptableObject.CreateInstance<RoundConfig>();
 
-        int round = _roundController.GetCurrentRound();
-        GameState.Difficulty difficulty = _gameState.GetGameDifficulty();
+        int round = GetRoundController().GetCurrentRound();
+        GameStates.Difficulty difficulty = GameStates.GetGameDifficulty();
 
         int allowedDifficulty = (round / 10);
         if (allowedDifficulty > _enemyLists.Count)
