@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cb1fb603ff9534da3f7f0265573112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerPrefab: {fileID: 597947575991742928, guid: 7233dd8e9a0d69740be41c294de90e14,
+  _towerPrefab: {fileID: -2651282024542566721, guid: 7233dd8e9a0d69740be41c294de90e14,
     type: 3}
 --- !u!61 &4942064034367783536
 BoxCollider2D:
@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cb1fb603ff9534da3f7f0265573112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerPrefab: {fileID: 7659105412694091812, guid: a7ee3d025e477f44bb167d422a74612f,
+  _towerPrefab: {fileID: 2449584853047408137, guid: a93ef00405cc1b740837b7ff37ee217a,
     type: 3}
 --- !u!1 &4942064034794555236
 GameObject:
@@ -588,7 +588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4942064036065484629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.25, y: 0, z: 0}
+  m_LocalPosition: {x: 15.375, y: 0, z: 0}
   m_LocalScale: {x: 4.5, y: 15.193073, z: 1}
   m_Children:
   - {fileID: 4942064034367783538}

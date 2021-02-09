@@ -46,6 +46,11 @@ public class GameController : MonoBehaviour
         GetRoundController().StartNextRound();
     }
 
+    public void ResetGame()
+    {
+        GameStates.SetGameState(GameState.Start);
+    }
+
     private void EndRound()
     {
         _roundTimer += Time.deltaTime;

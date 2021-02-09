@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TowerButton : MonoBehaviour
 {
 
-    [SerializeField] Tower _towerPrefab;
+    [SerializeField] TowerInstance _towerPrefab;
 
     public static Color32 notSelectedColor = new Color32(32, 32, 32, 255);
 

@@ -5,14 +5,15 @@ using UnityEngine;
 public class TowerSpawner : MonoBehaviour
 {
 
-    Tower _tower;
+    [SerializeField] Tower _tower;
+    TowerInstance _towerInstance;
     TowerButton _towerButton;
 
     private void OnMouseDown()
     {
-        if (_tower != null)
+        if (_towerInstance != null)
         {
-            if (GameStates.GetMoneyDisplay().SpendMoney(_tower.GetTowerCost()))
+            if (GameStates.GetMoneyDisplay().SpendMoney(_towerInstance.GetTowerCost()))
             {
                 SpawnTower(GetPosClicked());
             }
@@ -26,9 +27,9 @@ public class TowerSpawner : MonoBehaviour
             Debug.Log("Tower not selected");
     }
 
-    public void SetSelectedTower(Tower towerToSelect, TowerButton towerButton)
+    public void SetSelectedTower(TowerInstance towerToSelect, TowerButton towerButton)
     {
-        _tower = towerToSelect;
+        _towerInstance = towerToSelect;
         _towerButton = towerButton;
     }
 
@@ -41,10 +42,12 @@ public class TowerSpawner : MonoBehaviour
 
     private void SpawnTower(Vector2 spawnPos)
     {
-        if(_tower != null)
+        if(_towerInstance != null)
         {
             Tower newTower = Instantiate(_tower, spawnPos, Quaternion.identity) as Tower;
-            _tower = null;
+            newTower.SetTowerInstance(_towerInstance);
+
+            _towerInstance = null;
             _towerButton.GetComponent<SpriteRenderer>().color = TowerButton.notSelectedColor;
         }
         else

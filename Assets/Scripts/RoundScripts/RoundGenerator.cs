@@ -44,7 +44,7 @@ public class RoundGenerator : MonoBehaviour
         GameStates.Difficulty difficulty = GameStates.GetGameDifficulty();
 
         int allowedDifficulty = (round / 10);
-        if (allowedDifficulty > _enemyLists.Count)
+        if (allowedDifficulty >= _enemyLists.Count)
             allowedDifficulty = _enemyLists.Count;
 
         int numWaves;
@@ -60,7 +60,7 @@ public class RoundGenerator : MonoBehaviour
 
         for(int i = numWaves; i > 0; i--)
         {
-            int newEnemyDifficulty = _random.Next(allowedDifficulty + 1);
+            int newEnemyDifficulty = _random.Next(allowedDifficulty);
             List<Enemy> enemyList = _enemyLists.ElementAt(newEnemyDifficulty);
             Enemy waveEnemy = enemyList.ElementAt(_random.Next(enemyList.Count));
 
@@ -79,7 +79,7 @@ public class RoundGenerator : MonoBehaviour
                 float lastWaveLength = lastWave.GetWaveLength();
                 wave.SetWaitTimeBeforeStarting((float)_random.NextDouble() * lastWaveLength);
             }
-
+            lastWave = wave;
             nextRound.AddWave(wave);
         }
 

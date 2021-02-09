@@ -58,6 +58,7 @@ public static class GameStates
     static MessageController _messageController;
     static LifeDisplay _lifeDisplay;
     static MoneyDisplay _moneyDisplay;
+    static Camera _mainCamera;
 
 
     //Get Cached GameObjects
@@ -70,6 +71,8 @@ public static class GameStates
     public static MessageController GetMessageController() { return _messageController; }
     public static LifeDisplay GetLifeDisplay() { return _lifeDisplay; }
     public static MoneyDisplay GetMoneyDisplay() { return _moneyDisplay; }
+    public static Camera GetMainCamera() { return _mainCamera; }
+
 
     public static void PopulateCachedGameObjects(string gameOverPanel)
     {
@@ -82,6 +85,7 @@ public static class GameStates
         _messageController = GameObject.FindObjectOfType<MessageController>();
         _lifeDisplay = GameObject.FindObjectOfType<LifeDisplay>();
         _moneyDisplay = GameObject.FindObjectOfType<MoneyDisplay>();
+        _mainCamera = GameObject.FindObjectOfType<Camera>();
     }
 
     #endregion
